@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css" ></link>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+<title>Reminder</title>
+</head>
+<body>
+
+<div id="myDIV" class="header">
+  <h2 class="remind_header" style="margin:5px">Remind me to</h2>
+  <div class="title_add">
+    <input type="text" id="myInput" placeholder="Title...">
+    <span onclick="newElement()" class="addBtn">Add</span>
+  </div>
+</div>
+
+<ul id="myUL">
+  <li>Do homework</li>
+  <li class="checked">Pay bills</li>
+  <li>Meet with friends</li>
+  <li>Buy groceries</li>
+  <li>Read a book</li>
+</ul>
+
+
+<div class="wrapper">
+  <div class="timer-display">00:00:00</div>
+  <div class="container">
+    <div class="inputs">
+      <input
+        type="number"
+        id="hourInput"
+        placeholder="00"
+        min="0"
+        max="23"
+      />
+      <input
+        type="number"
+        id="minuteInput"
+        placeholder="00"
+        min="0"
+        max="59"
+      />
+    </div>
+    <button id="set" >Add Alarm</button>
+    <button id="stop">I'm onto it!</button>
+    <div class="activeAlarms"></div>
+    <audio class="alarm-audio" src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/2.mp3"></audio>
+  </div>
+</div>
+<!-- 
+<div  id="hidden" >
+<div id="app">
+  <h1>Current Time</h1>
+  <div id="current-time"></div>
+  <div class="create-alarm">
+    <div>Set Alarm</div>
+    <div class="form-actions">
+      <form class="alarm-inputs-container">
+        <div class="alarm-inputs">
+          <input class="hour-input"
+            type="number"
+            name="hour"
+            placeholder="Enter hours"
+            min="0"
+            max="12"
+            required
+          />
+          <input class="min-input"
+            type="number"
+            name="min"
+            min="0"
+            max="60"
+            placeholder="Enter minutes"
+            required
+          />
+          <input class="sec-input"
+            type="number"
+            name="sec"
+            min="0"
+            max="60"
+            placeholder="Enter seconds"
+            required
+          />
+          <select class="zone-select" name="zone" required>
+            <option value="" selected disabled>Zone</option>
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+        </div>
+        <button class="submit-button">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="active-alarm">
+  <div class="alarm-text"></div>
+  <button class="clear-alarm" onclick="stopAlarmSound()">Clear Alarm</button>
+</div>
+<audio class="alarm-audio"></audio>
+</div> -->
+
+<script src="index.js">
+
+</script>
+
+</body>
+</html>
