@@ -5,7 +5,8 @@ const addCloseButton = (element) => {
   const txt = document.createTextNode("\u00D7");
   span.className = "close";
   span.appendChild(txt);
-  element.appendChild(span)
+  element.appendChild(span);
+
 
   // and adding a click listener to it so it can dismiss its parent
   span.addEventListener('click', (e) => {
@@ -13,13 +14,14 @@ const addCloseButton = (element) => {
     const parentElement = e.target.parentElement
 
     parentElement.style.display = 'none'
-  })
-}
+  });
+};
+
 
 // Declaring a factory to add click event listener that will check or uncheck the element
 const addCheckedListener = (element) => {
   element.addEventListener('click', () => {
-    element.classList.toggle('checked')
+    element.classList.toggle('checked');
   })
 }
 
@@ -47,94 +49,9 @@ function newElement() {
   addCloseButton(li)
   addCheckedListener(li)
 
-/*   for (i = 0; i < close.length; i++) {
-    console.log('asdas')
-    close[i].onclick = function() {
-      console.log('working')
-      let div = this.parentElement;
-      div.style.display = "none";
-    }
-  } */
-/* 
-   var x = document.getElementById("hidden");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    } */
-  
 }
 
-
-
-
-
-// Create a "close" button and append it to each list item
-/*
-const myNodeList = document.querySelectorAll("LI"); //
-for (i = 0; i < myNodeList.length; i++) {
-  let span = document.createElement("SPAN");
-  let txt = document.createTextNode("\u00D7");
-  //adding "close" class to the span element 
-  span.classList.add("close");
-  span.appendChild(txt);
-  myNodeList[i].appendChild(span);
-} */
-
-// Create a "close" button and append it to each list item
-/* const myNodeList = document.querySelectorAll("li");
-myNodeList.forEach((liElement) => {
-  let span = document.createElement("SPAN");
-  let text = document.createTextNode("\u00D7");
-  span.classList.add("close");
-  span.appendChild(text);
-  liElement.appendChild(span)
-}); */
-
-
-// Click on a close button to hide the current list item
-/*let closeButtonElements = document.querySelectorAll(".close");
-for (i = 0; i < closeButtonElements.length; i++) {
-  closeButtonElements[i].onclick = function() {
-    let div = this.parentElement;
-    div.style.display = "none";
-  }
-}*/
-
-// Click on a close button to hide the current list item
-
-//Samo omogucava gasenje list item-a koji su vec bili tu, a oni koji su dinamicno dodati ne mogu da se uklone
-/*let closeButtonElements = document.querySelectorAll(".close");
-closeButtonElements.forEach((closeElement) => {
-  let parentElement = closeElement.parentElement;
-  closeElement.addEventListener("click", () => {
-    parentElement.style.display = "none";
-    
-  });
-});
-*/
-// Click on a close button to hide the current list item - radi kako treba
-// const list = document.querySelector("ul");
-/* list.addEventListener("click", (event) => {
-  if (event.target.classList.contains("close")) {
-    let parentElement = event.target.parentElement;
-    parentElement.style.display = "none";
-  }
-}); */
-
-
-
-// Add a "checked" symbol when clicking on a list item
-
-// let addCheckedMark = document.querySelector('li');
-/* list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
-}); */
-
-
-// TODO Apply the same logic for the alarm icon as with close button
+// TODO Apply the same logic for the alarm icon as with close button - Nisam uspeo da primenim logiku, uradim kod, i nema greske na conzoli, ali i dalje ne radi
 //Add an "alarm" symbol when adding new list item 
 function addAlarmIconToListItems() { 
 let myNodeListIcon = document.querySelectorAll("li");
@@ -145,25 +62,14 @@ myNodeListIcon.forEach((liElement) => {
     span.classList.add("alarm-icon");
     span.appendChild(icon);
     liElement.appendChild(span)
-  }
-});
-}
+  };
+ 
+})}
+
 
 
 addAlarmIconToListItems();
 document.querySelector(".addBtn").addEventListener("click", addAlarmIconToListItems);
-
-function listItemClickIconSetAlarm() {
-  const alarmIcons = document.querySelectorAll(".alarm-icon");
-  alarmIcons.forEach((icon) => {
-   icon.addEventListener('click', () => {
-    
-   });
-   
-  });
-}
-
-let listItemToSetAlarmTo;
 
 
 
@@ -267,7 +173,7 @@ const createAlarm = (alarmObj) => {
   alarmDiv.appendChild(deleteButton);
   activeAlarms.appendChild(alarmDiv);
 };
-
+/*
 //Set Alarm
 setAlarm.addEventListener("click", () => {
   alarmIndex += 1;
@@ -284,7 +190,7 @@ setAlarm.addEventListener("click", () => {
   hourInput.value = appendZero(initialHour);
   minuteInput.value = appendZero(initialMinute);
 });
-
+*/
 //Start Alarm - a ustvari markira da je spreman za pustanje kad dodje vreme
 const startAlarm = (e) => {
   let searchId = e.target.parentElement.getAttribute("data-id");
@@ -335,102 +241,46 @@ const listAlarmIconSet = (e) => {
   let iconClick = e.target.parentElement.parentElement.getAttribute()
 }
 
-/*
-var alarmString = null;
 
-// Select HTML5 Audio element
-const alarmAudio = document.querySelector(".alarm-audio");
 
-// Select DOM element with create-alarm class
-const createAlarm = document.querySelector(".create-alarm");
 
-// Select DOM element of active alarm container
-const activeAlarm = document.querySelector(".active-alarm");
-const clearAlarm = document.querySelector(".clear-alarm");
 
-// Select DOM element of active alarm text
-const alarmTextContainer = document.querySelector("alarm-text");
-
-const alarmText = (time) => `Alarm set at time ${time}`;
-
-// Initialize alarm sound
-alarmAudio.src = "http://soundbible.com/grab.php?id=2061&type=mp3";
-alarmAudio.load();
-
-//Stop alarm sound
-function stopAlarmSound() {
-  let audio = document.querySelector("audio");
-  audio.pause();
-  audio.currentTime = 0;
-}
-
-// Handle Create Alarm submit
-const handleSubmit = (event) => {
-  // Prevent default action of reloading the page
-  event.preventDefault();
-  const { hour, sec, min, zone } = document.forms[0];
-  alarmString = getTimeString({
-    hours: hour.value,
-    seconds: sec.value,
-    minutes: min.value,
-    zone: zone.value
+function addAlarmIconToListItems() { 
+  let myNodeListIcon = document.querySelectorAll("li");
+  myNodeListIcon.forEach((liElement) => {
+    if (!liElement.querySelector(".alarm-icon")) {
+      let span = document.createElement("SPAN");
+      let icon = document.createTextNode("⏰");
+      span.classList.add("alarm-icon");
+      span.appendChild(icon);
+      liElement.appendChild(span)
+    };
+    
+    /*//Alarm is set and remembered in the list item factory
+   alarmIsSetOnTheListItem = (fabrikaGovana) => {
+    if (fabrikaGovana.querySelector("alarm-icon").addEventListener("click",)) {
+      setAlarm.addEventListener("click", () => {
+        alarmIndex += 1;
+      
+        //alarmObject
+        let alarmObj = {};
+        alarmObj.id = `${alarmIndex}_${hourInput.value}_${minuteInput.value}`;
+        alarmObj.alarmHour = hourInput.value;
+        alarmObj.alarmMinute = minuteInput.value;
+        alarmObj.isActive = false;
+        console.log(alarmObj);
+        alarmsArray.push(alarmObj);
+        createAlarm(alarmObj);
+        hourInput.value = appendZero(initialHour);
+        minuteInput.value = appendZero(initialMinute);
+      });
+      
+    }
+  }*/
   });
-  // Reset form after submit
-  document.forms[0].reset();
-  // Hide create alarm
-  createAlarm.style.display = "none";
-  // show active alarm with text
-  activeAlarm.style.display = "block";
-  alarmTextContainer.innerHTML = alarmText(alarmString);
-};
-
-const handleClear = () => {
-  alarmString = "";
-  activeAlarm.style.display = "none";
-  createAlarm.style.display = "block";
-};
-
-// Trigger handleClear on button click
-clearAlarm.addEventListener("click", handleClear);
-// Attach submit event to the form
-document.forms[0].addEventListener("submit", handleSubmit);
-
-// Function to check if alarm needs to be triggered
-const checkAlarm = (timeString) => {
-  if (alarmString === timeString) {
-    alarmAudio.play();
-  }
-};
-
-// Function to convert time to string value
-const getTimeString = ({ hours, minutes, seconds, zone }) => {
-  if (minutes / 10 < 1) {
-    minutes = "0" + minutes;
-  }
-  if (seconds / 10 < 1) {
-    seconds = "0" + seconds;
-  }
-  return `${hours}:${minutes}:${seconds} ${zone}`;
-};
-
-// Function to display current time on screen
-const renderTime = () => {
-  var currentTime = document.getElementById("current-time");
-  const currentDate = new Date();
-  var hours = currentDate.getHours();
-  var minutes = currentDate.getMinutes();
-  var seconds = currentDate.getSeconds();
-  var zone = hours >= 12 ? "PM" : "AM";
-  if (hours > 12) {
-    hours = hours % 12;
-  }
-  const timeString = getTimeString({ hours, minutes, seconds, zone });
-  checkAlarm(timeString);
-  currentTime.innerHTML = timeString;
-};
-
-// Update time every second
-setInterval(renderTime, 1000);
- 
-//Stop alarm sound when "Clear Alarm" is clicked
-*/
+}
+  
+  
+  addAlarmIconToListItems();
+  document.querySelector(".addBtn").addEventListener("click", addAlarmIconToListItems);
+  
