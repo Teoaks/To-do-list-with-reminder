@@ -173,25 +173,9 @@ const createAlarm = (alarmObj) => {
   alarmDiv.appendChild(deleteButton);
   activeAlarms.appendChild(alarmDiv);
 };
-/*
-//Set Alarm
-setAlarm.addEventListener("click", () => {
-  alarmIndex += 1;
 
-  //alarmObject
-  let alarmObj = {};
-  alarmObj.id = `${alarmIndex}_${hourInput.value}_${minuteInput.value}`;
-  alarmObj.alarmHour = hourInput.value;
-  alarmObj.alarmMinute = minuteInput.value;
-  alarmObj.isActive = false;
-  console.log(alarmObj);
-  alarmsArray.push(alarmObj);
-  createAlarm(alarmObj);
-  hourInput.value = appendZero(initialHour);
-  minuteInput.value = appendZero(initialMinute);
-});
-*/
-//Start Alarm - a ustvari markira da je spreman za pustanje kad dodje vreme
+
+//Start Alarm - marks the time that is ready to start
 const startAlarm = (e) => {
   let searchId = e.target.parentElement.getAttribute("data-id");
 
@@ -256,27 +240,7 @@ function addAlarmIconToListItems() {
       liElement.appendChild(span)
     };
     
-    /*//Alarm is set and remembered in the list item factory
-   alarmIsSetOnTheListItem = (fabrikaGovana) => {
-    if (fabrikaGovana.querySelector("alarm-icon").addEventListener("click",)) {
-      setAlarm.addEventListener("click", () => {
-        alarmIndex += 1;
-      
-        //alarmObject
-        let alarmObj = {};
-        alarmObj.id = `${alarmIndex}_${hourInput.value}_${minuteInput.value}`;
-        alarmObj.alarmHour = hourInput.value;
-        alarmObj.alarmMinute = minuteInput.value;
-        alarmObj.isActive = false;
-        console.log(alarmObj);
-        alarmsArray.push(alarmObj);
-        createAlarm(alarmObj);
-        hourInput.value = appendZero(initialHour);
-        minuteInput.value = appendZero(initialMinute);
-      });
-      
-    }
-  }*/
+    
   });
 }
   
